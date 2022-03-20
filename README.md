@@ -1,2 +1,2 @@
-# Pet-ToDo_Ionic-back
-Backend NodeJs para una aplicación de Tareas en Ionic Angular
+# pet-template_node_api
+NodeJS REST API con Express, Mongoose y Passport
