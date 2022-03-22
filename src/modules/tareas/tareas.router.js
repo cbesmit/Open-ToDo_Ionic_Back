@@ -8,6 +8,8 @@ router.get('/list', passport.authenticate("jwt", { session: false }), tareasCont
 router.post('/create', passport.authenticate("jwt", { session: false }), tareasController.create);
 router.put('/update/:id', passport.authenticate("jwt", { session: false }), tareasController.update);
 router.get('/detail/:id', passport.authenticate("jwt", { session: false }), tareasController.detail);
+router.post('/changeStatus', passport.authenticate("jwt", { session: false }), tareasController.changeStatus);
+router.post('/deleteList', passport.authenticate("jwt", { session: false }), tareasController.deleteList);
 
 
 export default router;
