@@ -1,7 +1,7 @@
 import Tarea from '../../../models/mongo/tareas.model';
 
 export const list = async (req, res) => {
-    const listTareas = await Tarea.find({ uid: req.user._id }, { uid: 0, detalle: 0, createdAt: 0, updatedAt: 0 });
+    const listTareas = await Tarea.find({ uid: req.user._id }, { uid: 0, detalle: 0, createdAt: 0, updatedAt: 0 }).sort({fechaVencimiento: 'desc'});
     if (!listTareas) return res.status(404).json({
         status: 404,
         error: true,
@@ -61,7 +61,7 @@ export const create = async (req, res) => {
 
 export const update = async (req, res) => {
     let msgErr = '';
-    ['titulo'].forEach(item => {
+    ['titulo', 'estatus'].forEach(item => {
         if (!req.body.hasOwnProperty(item)) {
             msgErr += 'El campo ' + item + ' es obligatorio. ';
         }
@@ -74,7 +74,7 @@ export const update = async (req, res) => {
         data: []
     });
 
-    const { titulo, fechaVencimiento, detalle } = req.body;
+    const { titulo, fechaVencimiento, detalle, estatus } = req.body;
     const id = req.params.id;
 
     const foundTarea = await Tarea.findOne({ uid: req.user._id, _id: id }, { uid: 0, detalle: 0, createdAt: 0, updatedAt: 0 });

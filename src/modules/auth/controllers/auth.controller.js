@@ -44,7 +44,8 @@ export const login = async (req, res) => {
         error: false,
         msg: 'Acceso correcto',
         data: [{
-            token: token
+            token: token,
+            nombre: userFound.nombre
         }]
     });
 
